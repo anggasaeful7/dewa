@@ -35,9 +35,9 @@ Route::get('/cetakklasifikasi', [PendudukController::class, 'cetakklasifikasi'])
 
 
 
-// Route::get('/dashboard', function () {
-//     return view('auth.login');
-// })->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('auth.login');
+})->name('dashboard');
 
 
 Route::middleware(['auth', 'role:kph'])->group(function () {
@@ -87,15 +87,17 @@ Route::middleware(['auth', 'role:kph'])->group(function () {
     Route::get('/editklasifikasi/{id}', [KlasifikasiController::class, 'edit'])->name('klasifikasi.edit');
     Route::put('/updateklasifikasi{id}', [KlasifikasiController::class, 'update'])->name('klasifikasi.update');
     Route::delete('/delklasifikasi/{id}', [KlasifikasiController::class, 'destroy'])->name('klasifikasi.delete');
-});
 
-Route::middleware(['auth', 'role:rw'])->group(function () {
     Route::get('/rwmenu', [RwMenuController::class, 'index'])->name('rwmenu.index');
     Route::get('/addrwmenu', [RwMenuController::class, 'create'])->name('rwmenu.add');
     Route::post('/storerwmenu', [RwMenuController::class, 'store'])->name('rwmenu.store');
     Route::get('/editrwmenu/{id}', [RwMenuController::class, 'edit'])->name('rwmenu.edit');
     Route::put('/updaterwmenu{id}', [RwMenuController::class, 'update'])->name('rwmenu.update');
     Route::delete('/delrwmenu/{id}', [RwMenuController::class, 'destroy'])->name('rwmenu.delete');
+});
+
+Route::middleware(['auth', 'role:rw'])->group(function () {
+
 
     Route::get('/rw/penduduk', [RwController::class, 'indexpenduduk'])->name('rw.penduduk.index');
     Route::get('/rw/addpenduduk', [RwController::class, 'creatependuduk'])->name('rw.penduduk.add');

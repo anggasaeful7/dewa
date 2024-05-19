@@ -70,6 +70,12 @@ class KondisiController extends Controller
 
     public function update(Request $request, $id)
     {
+        if ($request->hasFile('foto_rumah')) {
+            $file = $request->file('foto_rumah');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/foto_rumah', $fileName);
+        }
+
         KondisiRumah::find($id)->update([
             'Luas_lantai' => $request->Luas_lantai,
             'Jenis_lantai' => $request->Jenis_lantai,
@@ -77,7 +83,8 @@ class KondisiController extends Controller
             'Fasilitas_BAB' => $request->Fasilitas_BAB,
             'Penerangan' => $request->Penerangan,
             'Air_minum' => $request->Air_minum,
-            'BB_masak' => $request->BB_masak
+            'BB_masak' => $request->BB_masak,
+            'foto_rumah' => $fileName ?? null,
         ]);
 
         return redirect()->route('kondisi.index')->with('success', 'Data berhasil diupdate');

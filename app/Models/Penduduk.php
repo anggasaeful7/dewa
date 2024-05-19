@@ -24,4 +24,14 @@ class Penduduk extends Model
         'Penerima_bantuan',
         'Jenis_bantuan_lain'
     ];
+
+    public function pekerjaan()
+    {
+        return $this->hasOne(Pekerjaan::class, 'id_penduduk', 'id');
+    }
+
+    public function kondisiRumah()
+    {
+        return $this->hasOne(KondisiRumah::class, 'id_penduduk', 'id');
+    }
 }

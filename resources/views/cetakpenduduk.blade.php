@@ -42,6 +42,7 @@
 <body>
     <div class="container mt-5">
         <h3 class="text-center mb-4">Data Penduduk</h3>
+
         <table class="table table-bordered table-striped">
             <thead class="table-light">
                 <tr>
@@ -63,26 +64,33 @@
             <tbody>
                 @forelse ($penduduk as $p)
                     <tr>
-                        <td>{{ $p->penduduk->No_KK }}</td>
-                        <td>{{ $p->penduduk->NIK }}</td>
+                        <td>{{ $p->No_KK }}</td>
+                        <td>{{ $p->NIK }}</td>
                         <td class="text-center">
-                            @if ($p->penduduk->pas_foto)
-                                <img src="{{ asset('storage/pas_foto/' . $p->penduduk->pas_foto) }}" alt="Pas Foto"
+                            @if ($p->pas_foto)
+                                <img src="{{ asset('storage/pas_foto/' . $p->pas_foto) }}" alt="Pas Foto"
                                     style="width: 50px;">
                             @else
                                 Tidak Ada Foto
                             @endif
                         </td>
-                        <td>{{ $p->penduduk->Nama_lengkap }}</td>
-                        <td>{{ $p->penduduk->Hbg_kel }}</td>
-                        <td>{{ $p->penduduk->JK }}</td>
-                        <td>{{ $p->penduduk->tmpt_lahir }}</td>
-                        <td>{{ $p->penduduk->tgl_lahir }}</td>
-                        <td>{{ $p->penduduk->Agama }}</td>
-                        <td>{{ $p->penduduk->Pendidikan_terakhir }}</td>
-                        <td>{{ $p->penduduk->Jenis_bantuan }}</td>
-                        <td>{{ $p->penduduk->Penerima_bantuan }}</td>
-                        <td>{{ $p->Pekerjaan }}</td>
+                        <td>{{ $p->Nama_lengkap }}</td>
+                        <td>{{ $p->JK }}</td>
+                        <td>{{ $p->tmpt_lahir }}</td>
+                        <td>{{ $p->tgl_lahir }}</td>
+                        <td>{{ $p->Agama }}</td>
+                        <td>{{ $p->Pendidikan_terakhir }}</td>
+                        <td>{{ $p->Jenis_bantuan }}</td>
+                        <td>{{ $p->Penerima_bantuan }}</td>
+                        <td>{{ $p->pekerjaan->Pekerjaan }}</td>
+                        <td class="text-center">
+                            @if ($p->kondisiRumah->foto_rumah)
+                                <img src="{{ asset('storage/foto_rumah/' . $p->kondisiRumah->foto_rumah) }}"
+                                    alt="Pas Foto" style="width: 50px;">
+                            @else
+                                Tidak Ada Foto
+                            @endif
+                        </td>
                     </tr>
                 @empty
                     <tr>

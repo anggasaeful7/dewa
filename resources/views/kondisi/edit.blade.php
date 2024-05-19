@@ -235,7 +235,8 @@
 
                         <div class="card-body px-0 pt-0 pb-2">
                             <form role="form" class="form-group mx-10 my-6"
-                                action="{{ route('kondisi.update', $kondisi->id) }}" method="POST">
+                                action="{{ route('kondisi.update', $kondisi->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
 
@@ -285,6 +286,13 @@
                                 <div class="mb-3">
                                     <input type="text" id="BB_masak" name="BB_masak" class="form-control"
                                         placeholder="BB_masak" aria-label="BB_masak"value="{{ $kondisi->BB_masak }}">
+                                </div>
+                                <label for="foto_rumah">foto_rumah</label>
+                                <div class="mb-3">
+                                    <img src="{{ asset('storage/foto_rumah/' . $kondisi->foto_rumah) }}"
+                                        alt="" style="width: 100px">
+                                    <input type="file" id="foto_rumah" name="foto_rumah" class="form-control"
+                                        placeholder="foto_rumah" aria-label="foto_rumah">
                                 </div>
                                 <div class="mb-3">
                                     <div class="text-center">

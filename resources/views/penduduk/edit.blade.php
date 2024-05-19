@@ -230,7 +230,7 @@
 
                         <div class="card-body px-0 pt-0 pb-2">
                             <form role="form" class="form-group mx-10 my-6" method="POST"
-                                action="{{ route('penduduk.update', $penduduk->id) }}">
+                                action="{{ route('penduduk.update', $penduduk->id) }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <!-- Anda mungkin perlu menyesuaikan method HTTP yang digunakan untuk update, misalnya PUT atau PATCH -->
@@ -245,6 +245,14 @@
                                 <div class="mb-3">
                                     <input type="number" id="nik" name="NIK" class="form-control"
                                         placeholder="NIK" aria-label="NIK" value="{{ $penduduk->NIK }}">
+                                </div>
+
+                                <label for="nik">Pas Foto</label>
+                                <div class="mb-3">
+                                    <img src="{{ asset('storage/pas_foto/' . $penduduk->pas_foto) }}" alt=""
+                                        style="width: 100px">
+                                    <input type="file" id="nik" name="pas_foto" class="form-control"
+                                        placeholder="NIK" aria-label="NIK">
                                 </div>
 
                                 <label for="nama_lengkap">Nama Lengkap</label>

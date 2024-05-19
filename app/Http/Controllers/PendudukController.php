@@ -21,9 +21,18 @@ class PendudukController extends Controller
 
     public function cetakpenduduk()
     {
-        $penduduk = Pekerjaan::with('penduduk')->get();
+        $penduduk = Penduduk::with(['pekerjaan', 'kondisiRumah'])->get();
+
+        // Cek apakah ada penduduk yang tidak memiliki pekerjaan atau kondisi rumah
+        foreach ($penduduk as $p) {
+            if (is_null($p->pekerjaan) || is_null($p->kondisiRumah)) {
+                return redirect()->back()->with('error', 'Lengkapi data pekerjaan dan kondisi rumah untuk cetak');
+            }
+        }
+
         return view('cetakpenduduk', compact('penduduk'));
     }
+
 
     public function cari(Request $request)
     {
@@ -163,9 +172,15 @@ class PendudukController extends Controller
 
     public function update(Request $request, $id)
     {
+        if ($request->hasFile('pas_foto')) {
+            $file = $request->file('pas_foto');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->storeAs('public/pas_foto', $fileName);
+        }
         Penduduk::find($id)->update([
             'No_KK' => $request->No_KK,
             'NIK' => $request->NIK,
+            'pas_foto' => $fileName ?? null,
             'Nama_lengkap' => $request->Nama_lengkap,
             'Hbg_kel' => $request->Hbg_kel,
             'JK' => $request->JK,
