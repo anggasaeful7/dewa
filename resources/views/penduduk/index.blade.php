@@ -33,7 +33,8 @@
             <a class="navbar-brand m-0" href="" target="_blank">
                 <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
                 @if (Auth::check())
-                    <span class="ms-1 fw-bold">Sistem KPH - {{ Auth::user()->role }}</span>
+                    <span class="ms-1 fw-bold" style="text-transform: uppercase">Sistem KPH -
+                        {{ Auth::user()->role }}</span>
                 @else
                     <span class="ms-1 fw-bold">Sistem KPH - Guest</span>
                 @endif

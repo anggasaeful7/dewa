@@ -32,7 +32,8 @@
                 aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=" # " target="_blank">
                 <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-                <span class="ms-1 font-weight-bold">Sistem KPH - {{ Auth::user()->role }}</span>
+                <span class="ms-1 font-weight-bold" style="text-transform: uppercase">Sistem KPH -
+                    {{ Auth::user()->role }}</span>
             </a>
         </div>
         <hr class="horizontal dark mt-0">
